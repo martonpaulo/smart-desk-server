@@ -1,25 +1,14 @@
-# smartdesk-server
+# Smart Desk
 
-Minimal Spring Boot service (Java 21). Contains a small health endpoint.
+Spring Boot service for Smart Desk with Gradle build.
 
 Prerequisites
-- Java 21 (JDK) installed
-- No global Gradle required — use the included Gradle wrapper
+- Java 21 (JDK)
+- Use the included Gradle wrapper (no global Gradle required)
 
 Quick start (zsh)
-1. Build:
-   ./gradlew clean build
-
-2. Run:
-   ./gradlew bootRun
-   # or run the built jar:
-   # ./gradlew bootJar
-   # java -jar build/libs/<artifact>.jar
-
-3. Test:
-   ./gradlew test
-
-Notes
-- This repository intentionally ignores local build artifacts (`build/`, `generated/`, `.gradle/`).
-- Keep IDE-specific files out of version control; they are in `.gitignore`.
-
+```bash
+./gradlew clean build
+./gradlew bootRun
+# then visit: http://localhost:8080/health
+```
