@@ -1,38 +1,61 @@
-# Smart Desk
+# Smart Desk Calendar Server
 
-This repository (folder name: `smart-desk-server`) contains the Smart Desk Spring Boot service.
+Simple Spring Boot service to add ICS calendar URLs and retrieve events.
 
-- Public project name: Smart Desk
-- Repository folder: `smart-desk-server`
-- Java package and group ID: `com.smartdesk`
+## Features
 
-Spring Boot application with a single health endpoint at `/health` and a small calendar API:
+- **In-memory storage** - No database required
+- **POST /calendars** - Add a calendar by URL
+- **GET /calendars/events** - Get all events from added calendars
+- **Simple ICS parser** - No external calendar libraries
 
-- POST /calendars  — add a calendar by providing JSON { "url": "https://.../calendar.ics" }
-- GET  /calendars/events — list parsed events from all added calendars
+## Quick Start
 
-Swagger / OpenAPI UI
-
-After starting the app (default port 8080) open the Swagger UI in your browser:
-
-- http://localhost:8080/swagger-ui.html
-
-Quick start (zsh)
 ```bash
-./gradlew clean build
+# Build and run
 ./gradlew bootRun
-# then visit: http://localhost:8080/health
-# Swagger UI: http://localhost:8080/swagger-ui.html
+
+# Visit Swagger UI
+open http://localhost:8080/swagger-ui.html
 ```
 
-Example: add a calendar (POST)
+## API Usage
+
+### Add a calendar
+
 ```bash
-curl -X POST "http://localhost:8080/calendars" \
+curl -X POST http://localhost:8080/calendars \
   -H 'Content-Type: application/json' \
-  -d '{"url":"file:///path/to/sample.ics"}'
+  -d '{"url":"https://example.com/mycalendar.ics"}'
 ```
 
-Example: get events (GET)
+### Get all events
+
 ```bash
 curl http://localhost:8080/calendars/events
 ```
+
+Response:
+```json
+{
+  "events": [
+    {
+      "uid": "1@example.com",
+      "summary": "Team Meeting",
+      "description": "Weekly sync",
+      "start": "2025-01-02T09:00:00Z",
+      "end": "2025-01-02T10:00:00Z",
+      "location": "Office",
+      "urlSource": "https://example.com/mycalendar.ics"
+    }
+  ],
+  "errors": []
+}
+```
+
+## Testing
+
+```bash
+./gradlew test
+```
+
