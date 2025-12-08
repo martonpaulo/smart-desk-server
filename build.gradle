@@ -18,6 +18,9 @@ dependencies {
     // Spring Web
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
+    // Validation
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
     // Testing (JUnit Jupiter is included via spring-boot-starter-test)
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
