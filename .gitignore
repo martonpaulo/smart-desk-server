@@ -1,0 +1,30 @@
+# Gradle build and cache
+.gradle/
+build/
+out/
+
+# Generated sources and classes
+/generated/
+*.class
+
+# Gradle wrapper (keep wrapper files, ignore caches)
+!gradle/wrapper/gradle-wrapper.jar
+
+# IntelliJ / JetBrains
+/.idea/
+*.iml
+*.iws
+*.ipr
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# macOS
+.DS_Store
+
+# Logs and temp
+*.log
+tmp/
+
