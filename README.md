@@ -1,6 +1,12 @@
 # Smart Desk
 
-Spring Boot service for Smart Desk with Gradle build.
+This repository (folder name: `smart-desk-server`) contains the Smart Desk Spring Boot service.
+
+- Public project name: Smart Desk
+- Repository folder: `smart-desk-server`
+- Java package and group ID: `com.smartdesk`
+
+Spring Boot application with a single health endpoint at `/health`.
 
 Prerequisites
 - Java 21 (JDK)
