@@ -1,14 +1,30 @@
 package com.smartdesk.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.time.OffsetDateTime;
 
+@Schema(description = "A calendar event parsed from an ICS source")
 public class CalendarEvent {
+    @Schema(description = "Event UID", example = "1@example.com")
     private String uid;
+
+    @Schema(description = "Event summary/title", example = "Team meeting")
     private String summary;
+
+    @Schema(description = "Event description", example = "Discuss project status")
     private String description;
+
+    @Schema(description = "Event start time (ISO-8601)", example = "2025-01-02T09:00:00Z")
     private OffsetDateTime start;
+
+    @Schema(description = "Event end time (ISO-8601)", example = "2025-01-02T10:00:00Z")
     private OffsetDateTime end;
+
+    @Schema(description = "Event location", example = "Office")
     private String location;
+
+    @Schema(description = "Source URL where this event was fetched from", example = "https://example.com/mycalendar.ics")
     private String urlSource;
 
     public CalendarEvent() {}
@@ -79,4 +95,3 @@ public class CalendarEvent {
         this.urlSource = urlSource;
     }
 }
-
