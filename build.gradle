@@ -6,6 +6,7 @@ plugins {
 
 group = 'com.smartdesk'
 version = '0.0.1-SNAPSHOT'
+description = 'Smart Desk'
 sourceCompatibility = '21'
 targetCompatibility = '21'
 
@@ -19,6 +20,14 @@ dependencies {
 
     // Testing (JUnit Jupiter is included via spring-boot-starter-test)
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+// Ensure produced artifact has a stable, readable base name (smart-desk)
+bootJar {
+    archiveBaseName.set('smart-desk')
+}
+jar {
+    archiveBaseName.set('smart-desk')
 }
 
 /* Optional: keep Gradle wrapper compatibility */
