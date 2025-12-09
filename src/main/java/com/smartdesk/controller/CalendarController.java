@@ -4,6 +4,7 @@ import com.smartdesk.dto.AddCalendarRequest;
 import com.smartdesk.service.CalendarService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +15,10 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/calendars")
+@RequiredArgsConstructor
 public class CalendarController {
     private final CalendarService service;
 
-    public CalendarController(CalendarService service) {
-        this.service = service;
-    }
 
     @Operation(summary = "Add an ICS calendar by URL")
     @PostMapping

@@ -2,6 +2,7 @@ package com.smartdesk.service;
 
 import com.smartdesk.dto.CalendarEvent;
 import com.smartdesk.repository.CalendarRepository;
+import lombok.Data;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -34,6 +35,7 @@ public class CalendarService {
         return repository.add(url);
     }
 
+    @Data
     public static class EventsResult {
         public final List<CalendarEvent> events = new ArrayList<>();
         public final List<String> errors = new ArrayList<>();

@@ -1,5 +1,6 @@
 package com.smartdesk.repository;
 
+import lombok.Getter;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collections;
@@ -8,6 +9,7 @@ import java.util.Set;
 
 @Repository
 public class InMemoryCalendarRepository implements CalendarRepository {
+    @Getter
     private final Set<String> urls = Collections.synchronizedSet(new LinkedHashSet<>());
 
     @Override
