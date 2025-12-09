@@ -1,61 +1,33 @@
-# Smart Desk Calendar Server
+# Smart Desk API
 
-Simple Spring Boot service to add ICS calendar URLs and retrieve events.
+Spring Boot WebFlux API for Smart Desk application.
 
 ## Features
 
-- **In-memory storage** - No database required
-- **POST /calendars** - Add a calendar by URL
-- **GET /calendars/events** - Get all events from added calendars
-- **Simple ICS parser** - No external calendar libraries
+- ✅ Add ICS calendars by URL
+- ✅ Fetch and parse events from calendars
+- ✅ Swagger UI documentation with examples
+- ✅ JPA persistence with H2 database
+- ✅ Functional routing style
 
-## Quick Start
+## Swagger UI
 
-```bash
-# Build and run
-./gradlew bootRun
+Once the application is running, visit:
+- Swagger UI: http://localhost:8080/swagger-ui.html
 
-# Visit Swagger UI
-open http://localhost:8080/swagger-ui.html
-```
+## H2 Database Console
 
-## API Usage
+For development, you can access the H2 database console at:
+- URL: http://localhost:8080/h2-console
+- JDBC URL: `jdbc:h2:mem:smartdesk`
+- Username: `sa`
+- Password: (leave empty)
 
-### Add a calendar
+## Technology Stack
 
-```bash
-curl -X POST http://localhost:8080/calendars \
-  -H 'Content-Type: application/json' \
-  -d '{"url":"https://example.com/mycalendar.ics"}'
-```
-
-### Get all events
-
-```bash
-curl http://localhost:8080/calendars/events
-```
-
-Response:
-```json
-{
-  "events": [
-    {
-      "uid": "1@example.com",
-      "summary": "Team Meeting",
-      "description": "Weekly sync",
-      "start": "2025-01-02T09:00:00Z",
-      "end": "2025-01-02T10:00:00Z",
-      "location": "Office",
-      "urlSource": "https://example.com/mycalendar.ics"
-    }
-  ],
-  "errors": []
-}
-```
-
-## Testing
-
-```bash
-./gradlew test
-```
-
+- Java 21
+- Spring Boot 3.4.1
+- Spring WebFlux (reactive)
+- Spring Data JPA
+- SpringDoc OpenAPI 2.7.0
+- Lombok

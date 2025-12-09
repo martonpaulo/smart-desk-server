@@ -1,12 +1,12 @@
 plugins {
-    id 'org.springframework.boot' version '3.4.5'
-    id 'io.spring.dependency-management' version '1.1.3'
+    id 'org.springframework.boot' version '3.4.1'
+    id 'io.spring.dependency-management' version '1.1.7'
     id 'java'
 }
 
 group = 'com.smartdesk'
-version = '0.0.1-SNAPSHOT'
-description = 'Smart Desk'
+version = '1.0.0'
+description = 'Smart Desk Calendar API'
 sourceCompatibility = '21'
 targetCompatibility = '21'
 
@@ -14,38 +14,33 @@ repositories {
     mavenCentral()
 }
 
+
 dependencies {
-    // Spring Web
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // Spring WebFlux
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
     // Validation
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-    // OpenAPI / Swagger UI
-    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
+    // OpenAPI / Swagger UI for WebFlux (Latest version)
+    implementation 'org.springdoc:springdoc-openapi-starter-webflux-ui:2.7.0'
 
     // Lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-    testCompileOnly 'org.projectlombok:lombok'
-    testAnnotationProcessor 'org.projectlombok:lombok'
 
     // Spring Data JPA
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-    // Testing (JUnit Jupiter is included via spring-boot-starter-test)
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // H2 Database (in-memory for development)
+    runtimeOnly 'com.h2database:h2'
 }
 
-// Ensure produced artifact has a stable, readable base name (smart-desk)
 bootJar {
     archiveBaseName.set('smart-desk')
 }
+
 jar {
     archiveBaseName.set('smart-desk')
-}
-
-/* Optional: keep Gradle wrapper compatibility */
-tasks.withType(Test) {
-    useJUnitPlatform()
+    enabled = false
 }
