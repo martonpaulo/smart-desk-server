@@ -157,6 +157,7 @@ public class EventService {
         event.setAlertDismissed(false);
         event.setHidden(false);
         event.setCalendarRef(calendar);
+        event.setCalendarId(calendar.getId());
 
         return event;
     }

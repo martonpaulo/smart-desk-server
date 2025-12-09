@@ -22,7 +22,8 @@ import java.time.Instant;
       "utcEndDateTime": "2025-12-26T00:00:00Z",
       "isAllDay": true,
       "isAlertDismissed": false,
-      "isHidden": false
+      "isHidden": false,
+      "calendarId": 1
     }
     """)
 public class Event extends Base {
@@ -54,6 +55,10 @@ public class Event extends Base {
 
     @Schema(description = "Whether the event is hidden", example = "false")
     private boolean isHidden = false;
+
+    @Column(name = "calendar_id", insertable = false, updatable = false)
+    @Schema(description = "ID of the calendar this event belongs to", example = "1")
+    private Long calendarId;
 
     // Relationship to the Calendar
     @ManyToOne(fetch = FetchType.LAZY)
