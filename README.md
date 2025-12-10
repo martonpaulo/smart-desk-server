@@ -2,16 +2,6 @@
 
 Spring Boot WebFlux API for Smart Desk application.
 
-## Features
-
-- ✅ Add ICS calendars by URL
-- ✅ Fetch and parse events from calendars
-- ✅ Swagger UI documentation with examples
-- ✅ JPA persistence with H2 database
-- ✅ Functional routing style
-
-## Swagger UI
-
 Once the application is running, visit:
 - Swagger UI: http://localhost:8080/swagger-ui.html
 
@@ -31,3 +21,4 @@ For development, you can access the H2 database console at:
 - Spring Data JPA
 - SpringDoc OpenAPI 2.7.0
 - Lombok
+- Biweekly Calendaring Library

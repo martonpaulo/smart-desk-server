@@ -133,12 +133,12 @@ public class EventService {
                     description = value;
                     break;
                 case "DTSTART":
-                    ParsedDateTime parsed = parseDateTime(value, key);
+                    ParsedDateTime parsed = parseDateTime(value);
                     start = parsed.instant;
                     isAllDay = parsed.isAllDay;
                     break;
                 case "DTEND":
-                    end = parseDateTime(value, key).instant;
+                    end = parseDateTime(value).instant;
                     break;
             }
         }
@@ -148,16 +148,14 @@ public class EventService {
         }
 
         Event event = new Event();
-        event.setUid(uid);
         event.setTitle(title);
         event.setDescription(description);
         event.setUtcStartDateTime(start);
         event.setUtcEndDateTime(end);
         event.setAllDay(isAllDay);
-        event.setAlertDismissed(false);
-        event.setHidden(false);
-        event.setCalendarRef(calendar);
         event.setCalendarId(calendar.getId());
+        event.setCalendarName(calendar.getName());
+        event.setCalendarColor(calendar.getColor());
 
         return event;
     }
@@ -172,7 +170,7 @@ public class EventService {
         }
     }
 
-    private ParsedDateTime parseDateTime(String value, String key) {
+    private ParsedDateTime parseDateTime(String value) {
         try {
             if (value.endsWith("Z")) {
                 // UTC time

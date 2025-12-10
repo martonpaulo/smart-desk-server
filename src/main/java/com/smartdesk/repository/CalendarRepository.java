@@ -4,11 +4,9 @@ import com.smartdesk.model.Calendar;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.UUID;
 
 @Repository
-public interface CalendarRepository extends JpaRepository<Calendar, Long> {
-    Optional<Calendar> findByUid(String uid);
-    Optional<Calendar> findByUrl(String sourceUrl);
+public interface CalendarRepository extends JpaRepository<Calendar, UUID> {
 }
 

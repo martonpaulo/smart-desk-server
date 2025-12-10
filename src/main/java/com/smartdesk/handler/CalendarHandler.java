@@ -28,6 +28,10 @@ public class CalendarHandler {
                         .badRequest()
                         .bodyValue(Map.of("error", e.getMessage())));
     }
+
+    public Mono<ServerResponse> getAllCalendars(ServerRequest request) {
+        return ServerResponse
+                .ok()
+                .bodyValue(calendarService.getAllCalendars());
+    }
 }
-
-

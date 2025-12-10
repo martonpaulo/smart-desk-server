@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -32,11 +33,6 @@ public class CalendarService {
             throw new IllegalArgumentException("Invalid source URL: " + e.getMessage());
         }
 
-        // Generate UID from source URL if not provided
-        if (calendar.getUid() == null || calendar.getUid().isBlank()) {
-            calendar.setUid(generateUidFromSourceUrl(sourceUrl));
-        }
-
         // Set default name from source URL if not provided
         if (calendar.getName() == null || calendar.getName().isBlank()) {
             calendar.setName(extractNameFromSourceUrl(sourceUrl));
@@ -45,8 +41,8 @@ public class CalendarService {
         return calendarRepository.save(calendar);
     }
 
-    private String generateUidFromSourceUrl(String sourceUrl) {
-        return sourceUrl.replaceAll("[^a-zA-Z0-9]", "-").toLowerCase();
+    public List<Calendar> getAllCalendars() {
+        return calendarRepository.findAll();
     }
 
     private String extractNameFromSourceUrl(String sourceUrl) {

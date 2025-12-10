@@ -6,9 +6,12 @@ plugins {
 
 group = 'com.smartdesk'
 version = '1.0.0'
-description = 'Smart Desk Calendar API'
-sourceCompatibility = '21'
-targetCompatibility = '21'
+description = 'Smart Desk API'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
 
 repositories {
     mavenCentral()
@@ -22,7 +25,7 @@ dependencies {
     // Validation
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-    // OpenAPI / Swagger UI for WebFlux (Latest version)
+    // OpenAPI / Swagger UI for WebFlux
     implementation 'org.springdoc:springdoc-openapi-starter-webflux-ui:2.7.0'
 
     // Lombok
@@ -34,6 +37,9 @@ dependencies {
 
     // H2 Database (in-memory for development)
     runtimeOnly 'com.h2database:h2'
+
+    // Biweekly for ICS calendar parsing
+    implementation 'net.sf.biweekly:biweekly:0.6.8'
 }
 
 bootJar {
