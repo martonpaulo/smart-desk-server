@@ -37,7 +37,7 @@ public class EventService {
                 allEvents.addAll(events);
             } catch (Exception e) {
                 // Log error but continue with other calendars
-                System.err.println("Error fetching events from " + calendar.getUrl() + ": " + e.getMessage());
+                System.err.println("Error fetching events from " + calendar.getSourceUrl() + ": " + e.getMessage());
             }
         }
 
@@ -45,18 +45,18 @@ public class EventService {
     }
 
     private List<Event> fetchAndParseEvents(Calendar calendar) throws IOException, InterruptedException {
-        String url = calendar.getUrl();
+        String sourceUrl = calendar.getSourceUrl();
 
         // Support file:// URIs for tests
-        if (url.startsWith("file:")) {
-            URI uri = URI.create(url);
+        if (sourceUrl.startsWith("file:")) {
+            URI uri = URI.create(sourceUrl);
             try (InputStream is = java.nio.file.Files.newInputStream(java.nio.file.Paths.get(uri))) {
                 return parseIcs(is, calendar);
             }
         }
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
+                .uri(URI.create(sourceUrl))
                 .GET()
                 .build();
 

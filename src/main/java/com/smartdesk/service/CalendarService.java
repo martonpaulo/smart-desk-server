@@ -14,44 +14,44 @@ public class CalendarService {
     private final CalendarRepository calendarRepository;
 
     public Calendar addCalendar(Calendar calendar) {
-        String url = calendar.getUrl();
-        if (url == null || url.isBlank()) {
-            throw new IllegalArgumentException("Calendar URL is required");
+        String sourceUrl = calendar.getSourceUrl();
+        if (sourceUrl == null || sourceUrl.isBlank()) {
+            throw new IllegalArgumentException("Calendar source URL is required");
         }
 
-        // Basic URL validation
+        // Basic source URL validation
         try {
-            URI uri = new URI(url.trim());
+            URI uri = new URI(sourceUrl.trim());
             String scheme = uri.getScheme();
             if (scheme == null || !(scheme.equalsIgnoreCase("http") ||
                     scheme.equalsIgnoreCase("https") ||
                     scheme.equalsIgnoreCase("file"))) {
-                throw new IllegalArgumentException("URL must use http(s) or file");
+                throw new IllegalArgumentException("Source URL must use http(s) or file");
             }
         } catch (URISyntaxException e) {
-            throw new IllegalArgumentException("Invalid URL: " + e.getMessage());
+            throw new IllegalArgumentException("Invalid source URL: " + e.getMessage());
         }
 
-        // Generate UID from URL if not provided
+        // Generate UID from source URL if not provided
         if (calendar.getUid() == null || calendar.getUid().isBlank()) {
-            calendar.setUid(generateUidFromUrl(url));
+            calendar.setUid(generateUidFromSourceUrl(sourceUrl));
         }
 
-        // Set default name from URL if not provided
+        // Set default name from source URL if not provided
         if (calendar.getName() == null || calendar.getName().isBlank()) {
-            calendar.setName(extractNameFromUrl(url));
+            calendar.setName(extractNameFromSourceUrl(sourceUrl));
         }
 
         return calendarRepository.save(calendar);
     }
 
-    private String generateUidFromUrl(String url) {
-        return url.replaceAll("[^a-zA-Z0-9]", "-").toLowerCase();
+    private String generateUidFromSourceUrl(String sourceUrl) {
+        return sourceUrl.replaceAll("[^a-zA-Z0-9]", "-").toLowerCase();
     }
 
-    private String extractNameFromUrl(String url) {
+    private String extractNameFromSourceUrl(String sourceUrl) {
         try {
-            URI uri = new URI(url);
+            URI uri = new URI(sourceUrl);
             String path = uri.getPath();
             if (path != null && !path.isEmpty()) {
                 String[] parts = path.split("/");

@@ -41,8 +41,8 @@ public class RouterConfig {
         return route()
                 .POST("/api/v1/calendars", accept(MediaType.APPLICATION_JSON), handler::addCalendar, ops -> ops
                         .operationId("addCalendar")
-                        .summary("Add a calendar by URL")
-                        .description("Add a new ICS calendar by providing its URL. Example URL: https://calendar.google.com/calendar/ical/en.usa%23holiday%40group.v.calendar.google.com/public/basic.ics")
+                        .summary("Add a calendar by source URL")
+                        .description("Add a new ICS calendar by providing its source URL. Example source URL: https://calendar.google.com/calendar/ical/en.usa%23holiday%40group.v.calendar.google.com/public/basic.ics")
                         .tag("Calendars")
                         .requestBody(requestBodyBuilder()
                                 .implementation(Calendar.class)
@@ -54,7 +54,7 @@ public class RouterConfig {
                         )
                         .response(responseBuilder()
                                 .responseCode(String.valueOf(HttpStatus.BAD_REQUEST.value()))
-                                .description("Invalid request or URL")
+                                .description("Invalid request or source URL")
                         )
                 )
                 .build();

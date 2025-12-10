@@ -9,6 +9,6 @@ import java.util.Optional;
 @Repository
 public interface CalendarRepository extends JpaRepository<Calendar, Long> {
     Optional<Calendar> findByUid(String uid);
-    Optional<Calendar> findByUrl(String url);
+    Optional<Calendar> findByUrl(String sourceUrl);
 }
 

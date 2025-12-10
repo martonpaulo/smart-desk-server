@@ -11,7 +11,7 @@ import jakarta.persistence.*;
 @NoArgsConstructor
 @Schema(description = "Calendar entity", example = """
     {
-      "url": "https://calendar.google.com/calendar/ical/en.usa%23holiday%40group.v.calendar.google.com/public/basic.ics",
+      "sourceUrl": "https://calendar.google.com/calendar/ical/en.usa%23holiday%40group.v.calendar.google.com/public/basic.ics",
       "name": "US Holidays",
       "description": "United States holidays calendar",
       "color": "#4285F4"
@@ -29,8 +29,8 @@ public class Calendar extends Base {
     @Schema(description = "Calendar description", example = "United States holidays calendar")
     private String description;
 
-    @Schema(description = "ICS calendar URL", example = "https://calendar.google.com/calendar/ical/en.usa%23holiday%40group.v.calendar.google.com/public/basic.ics", requiredMode = Schema.RequiredMode.REQUIRED)
-    private String url;
+    @Schema(description = "ICS calendar source URL", example = "https://calendar.google.com/calendar/ical/en.usa%23holiday%40group.v.calendar.google.com/public/basic.ics", requiredMode = Schema.RequiredMode.REQUIRED)
+    private String sourceUrl;
 
     @Schema(description = "Calendar color in hex format", example = "#4285F4")
     private String color;

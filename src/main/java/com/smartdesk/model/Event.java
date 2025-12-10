@@ -6,6 +6,7 @@ import lombok.*;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.UUID;
 
 @Entity
 @Table(name = "events")
@@ -58,7 +59,7 @@ public class Event extends Base {
 
     @Column(name = "calendar_id", insertable = false, updatable = false)
     @Schema(description = "ID of the calendar this event belongs to", example = "1")
-    private Long calendarId;
+    private UUID calendarId;
 
     // Relationship to the Calendar
     @ManyToOne(fetch = FetchType.LAZY)
